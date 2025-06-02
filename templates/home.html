@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LED Control</title>
+    <script>
+        function setLed(state) {
+            fetch('/led/' + state, { method: 'POST' })
+                .then(response => {
+                    if (!response.ok) {
+                        alert("Error setting LED");
+                    }
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>LED Controller</h1>
+    <button onclick="setLed(1)">Turn LED ON</button>
+    <button onclick="setLed(0)">Turn LED OFF</button>
+</body>
+</html>
