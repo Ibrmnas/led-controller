@@ -1,7 +1,9 @@
 from flask import Flask, render_template
+from flask_cors import CORS  # Import CORS
 from piUtils import setLedState, cleanup_gpio
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/')
 def index():
@@ -24,3 +26,4 @@ if __name__ == '__main__':
         print("Shutting down the server...")
     finally:
         cleanup_gpio()  # Ensure GPIO cleanup on server shutdown
+
