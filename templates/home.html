@@ -29,17 +29,19 @@
     </div>
 
     <script>
-        function setLed(state) {
-            fetch(`/led/${state}`, { method: 'POST' })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById('ledState').className =
-                            'led-indicator ' + (state === 1 ? 'on' : 'off');
-                    } else {
-                        alert("Failed to change LED state.");
-                    }
-                });
-        }
+function setLed(state) {
+    fetch(`http://151.60.194.83:50100/led/${state}`, { method: 'POST' })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('ledState').className =
+                    'led-indicator ' + (state === 1 ? 'on' : 'off');
+            } else {
+                alert("Failed to change LED state.");
+            }
+        })
+        .catch(() => alert("Failed to reach the Raspberry Pi."));
+}
+
     </script>
 </body>
 </html>
