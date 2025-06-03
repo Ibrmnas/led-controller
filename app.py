@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template
 from piUtils import setLedState, cleanup_gpio
 
@@ -19,4 +18,9 @@ def setLed(state):
     return ('', 204)
 
 if __name__ == '__main__':
-    app.run()
+    try:
+        app.run(host='0.0.0.0', port=50100)
+    except KeyboardInterrupt:
+        print("Shutting down the server...")
+    finally:
+        cleanup_gpio()  # Ensure GPIO cleanup on server shutdown
